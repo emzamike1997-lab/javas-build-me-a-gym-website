@@ -1,0 +1,136 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+        }
+        .nav a:hover {
+            color: #ccc;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .hero {
+            background-image: linear-gradient(to bottom, #333, #555);
+            color: #fff;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .hero h2 {
+            margin: 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .feature {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .feature h3 {
+            margin: 0;
+        }
+        .feature p {
+            margin-bottom: 10px;
+        }
+        .call-to-action {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .call-to-action:hover {
+            background-color: #444;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Gym Website</h1>
+    </div>
+    <div class="nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="main">
+        <div class="hero">
+            <h2>Welcome to our gym</h2>
+            <p>Get fit, feel great, and achieve your goals with our state-of-the-art equipment and expert trainers.</p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <h3>State-of-the-art equipment</h3>
+                <p>Our gym is equipped with the latest and greatest equipment to help you achieve your fitness goals.</p>
+            </div>
+            <div class="feature">
+                <h3>Expert trainers</h3>
+                <p>Our trainers are experienced and knowledgeable, and will help you create a personalized workout plan to achieve your goals.</p>
+            </div>
+            <div class="feature">
+                <h3>Group classes</h3>
+                <p>Join one of our many group classes, from yoga to spinning, and get fit with like-minded people.</p>
+            </div>
+        </div>
+        <button class="call-to-action">Join Now</button>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Gym Website</p>
+    </div>
+    <script>
+        // Add event listener to call-to-action button
+        document.querySelector('.call-to-action').addEventListener('click', function() {
+            // Add functionality to button click event
+            alert('Thank you for joining our gym!');
+        });
+    </script>
+</body>
+</html>
+```
