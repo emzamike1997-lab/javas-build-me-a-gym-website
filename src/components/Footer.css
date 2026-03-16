@@ -1,0 +1,11 @@
+```css
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    clear: both;
+}
+```
+
+This code provides a basic structure for a gym website with navigation, home, about, services, contact, and footer sections. It includes CSS styles for layout, typography, and visual design. The contact form includes basic validation and error handling. Note that this is a starting point, and you will likely need to add more features, functionality, and content to create a fully functional website.
