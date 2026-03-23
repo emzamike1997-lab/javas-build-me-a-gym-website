@@ -1,136 +1,618 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-        }
-        .nav {
-            background-color: #444;
-            padding: 10px;
-            text-align: center;
-        }
-        .nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 10px;
-        }
-        .nav a:hover {
-            color: #ccc;
-        }
-        .main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        .hero {
-            background-image: linear-gradient(to bottom, #333, #555);
-            color: #fff;
-            padding: 50px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .hero h2 {
-            margin: 0;
-        }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .feature {
-            background-color: #fff;
-            padding: 20px;
-            margin: 10px;
-            width: 200px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .feature h3 {
-            margin: 0;
-        }
-        .feature p {
-            margin-bottom: 10px;
-        }
-        .call-to-action {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .call-to-action:hover {
-            background-color: #444;
-        }
-        .footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            clear: both;
-        }
-    </style>
+  <title>Build Me A Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --bg: #080c14;
+      --bg2: #0d1220;
+      --bg3: #111827;
+      --accent: #ff69b4;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: #fff;
+      line-height: 1.6;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      background: rgba(8, 12, 20, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    nav ul li {
+      margin-right: 20px;
+    }
+    nav ul li:last-child {
+      margin-right: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+    }
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+    .hero .content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    .hero .content .eyebrow {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .hero .content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero .content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .hero .content .btn {
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .hero .content .btn:hover {
+      background-color: #ff99cc;
+    }
+    .banner {
+      background-color: var(--bg2);
+      padding: 1rem;
+      text-align: center;
+    }
+    .banner p {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+    }
+    .stats .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stats .stat h2 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .stats .stat p {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Gym Website</h1>
+  <nav>
+    <a href="#" class="logo">Build Me A Gym</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="cart">Cart</a>
+    <a href="#" class="cta">Get Started</a>
+  </nav>
+  <div class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/34131256/14472792_640_360_25fps.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="content">
+      <p class="eyebrow">Get fit with us</p>
+      <h1>Build Your Dream Gym</h1>
+      <p>Join our community and start your fitness journey today</p>
+      <button class="btn">Get Started</button>
+      <button class="btn">Learn More</button>
     </div>
-    <div class="nav">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-    </div>
-    <div class="main">
-        <div class="hero">
-            <h2>Welcome to our gym</h2>
-            <p>Get fit, feel great, and achieve your goals with our state-of-the-art equipment and expert trainers.</p>
-        </div>
-        <div class="features">
-            <div class="feature">
-                <h3>State-of-the-art equipment</h3>
-                <p>Our gym is equipped with the latest and greatest equipment to help you achieve your fitness goals.</p>
-            </div>
-            <div class="feature">
-                <h3>Expert trainers</h3>
-                <p>Our trainers are experienced and knowledgeable, and will help you create a personalized workout plan to achieve your goals.</p>
-            </div>
-            <div class="feature">
-                <h3>Group classes</h3>
-                <p>Join one of our many group classes, from yoga to spinning, and get fit with like-minded people.</p>
-            </div>
-        </div>
-        <button class="call-to-action">Join Now</button>
-    </div>
-    <div class="footer">
-        <p>&copy; 2024 Gym Website</p>
-    </div>
+  </div>
+  <div class="banner">
+    <p>Flash Sale: 20% off all memberships for a limited time only! <span id="countdown">10:00:00</span></p>
     <script>
-        // Add event listener to call-to-action button
-        document.querySelector('.call-to-action').addEventListener('click', function() {
-            // Add functionality to button click event
-            alert('Thank you for joining our gym!');
-        });
+      let countdown = 360000; // 10 minutes
+      let interval = setInterval(() => {
+        let minutes = Math.floor(countdown / 60000);
+        let seconds = Math.floor((countdown % 60000) / 1000);
+        let hours = Math.floor(countdown / 3600000);
+        document.getElementById('countdown').innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        countdown -= 1000;
+        if (countdown < 0) {
+          clearInterval(interval);
+        }
+      }, 1000);
     </script>
-</body>
-</html>
-```
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <h2>1000</h2>
+      <p>Members</p>
+    </div>
+    <div class="stat">
+      <h2>500</h2>
+      <p>Workouts</p>
+    </div>
+    <div class="stat">
+      <h2>200</h2>
+      <p>Classes</p>
+    </div>
+    <div class="stat">
+      <h2>50</h2>
+      <p>Personal Trainers</p>
+    </div>
+  </div>
+  <main>
+<section class="reveal" style="background-color: #080c14; padding: 100px 0;">
+  <h1 style="font-family: 'Playfair Display'; font-size: 48px; color: #fff; text-align: center;">Featured Collections</h1>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 50px 0;">
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+      <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHwyfHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Category: Fitness</p>
+      <h2 style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">Pro Fitness Equipment</h2>
+      <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Get fit with our top-of-the-line equipment, designed to help you reach your goals.</p>
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$999.99</p>
+      <div style="display: flex; align-items: center; margin: 10px 0;">
+        <span style="font-family: 'Inter'; font-size: 18px; color: #fff;">★★★★★</span>
+        <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin: 0 10px;">Add to Cart</button>
+        <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">♡</button>
+      </div>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+      <img src="https://images.unsplash.com/photo-1623874514711-0f321325f318?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHwzfHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Category: Fitness</p>
+      <h2 style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">Home Gym Essentials</h2>
+      <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Get the best equipment for your home gym, designed to help you reach your fitness goals.</p>
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$499.99</p>
+      <div style="display: flex; align-items: center; margin: 10px 0;">
+        <span style="font-family: 'Inter'; font-size: 18px; color: #fff;">★★★★★</span>
+        <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin: 0 10px;">Add to Cart</button>
+        <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">♡</button>
+      </div>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw0fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Category: Fitness</p>
+      <h2 style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">Fitness Tracker</h2>
+      <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Track your fitness journey with our state-of-the-art fitness tracker.</p>
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$199.99</p>
+      <div style="display: flex; align-items: center; margin: 10px 0;">
+        <span style="font-family: 'Inter'; font-size: 18px; color: #fff;">★★★★★</span>
+        <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin: 0 10px;">Add to Cart</button>
+        <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">♡</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" style="background-color: #080c14; padding: 100px 0; overflow-x: hidden;">
+  <h1 style="font-family: 'Playfair Display'; font-size: 48px; color: #fff; text-align: center;">Bestsellers</h1>
+  <div style="display: flex; overflow-x: scroll; padding: 20px 0;">
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); margin: 0 20px; width: 300px;">
+      <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw1fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$99.99</p>
+      <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Quick View</button>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); margin: 0 20px; width: 300px;">
+      <img src="https://images.unsplash.com/photo-1521805103424-d8f8430e8933?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw2fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$199.99</p>
+      <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Quick View</button>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); margin: 0 20px; width: 300px;">
+      <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw1fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$99.99</p>
+      <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Quick View</button>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); margin: 0 20px; width: 300px;">
+      <img src="https://images.unsplash.com/photo-1521805103424-d8f8430e8933?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw2fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$199.99</p>
+      <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Quick View</button>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); margin: 0 20px; width: 300px;">
+      <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw1fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+      <p style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">$99.99</p>
+      <button style="background: #fff; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Quick View</button>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" style="background-color: #080c14; padding: 100px 0; display: flex; justify-content: space-between;">
+  <div style="width: 50%; padding: 20px;">
+    <h1 style="font-family: 'Playfair Display'; font-size: 48px; color: #fff; margin: 10px 0;">Our Story</h1>
+    <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">At our core, we're a team of fitness enthusiasts who believe in the transformative power of exercise. We're dedicated to helping you reach your goals, whether that's running a marathon or simply feeling more confident in your own skin.</p>
+    <p style="font-family: 'Inter'; font-size: 18px; color: #fff; margin: 10px 0;">Our journey began with a simple idea: to create a community that supports and motivates each other to be their best selves. Today, we're proud to be a part of a global movement that's helping people from all walks of life to get fit, feel good, and live their best lives.</p>
+  </div>
+  <div style="width: 50%; padding: 20px;">
+    <img src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw3fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="width: 100%; height: 500px; object-fit: cover; border-radius: 10px;">
+  </div>
+</section>
+
+<section class="reveal" style="background-color: #080c14; padding: 100px 0;">
+  <h1 style="font-family: 'Playfair Display'; font-size: 48px; color: #fff; text-align: center;">Features</h1>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 50px 0;">
+    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 10L30 20L20 30L10 20L20 10Z" fill="#fff" />
+      </svg>
+      <h2 style="font-family: 'Inter'; font-size: 24px; color: #fff; margin: 10px 0;">Personalized Workouts</h2>
+      <p style="font-family: 'Inter'; font
+<section class="reveal" style="background-color: #080c14; padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+  <div style="position: relative; height: 280px; overflow: hidden; border-radius: 10px;">
+    <img src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw3fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; display: flex; justify-content: center; align-items: center; font-size: 24px; color: #fff; transition: opacity 0.3s ease-in-out; cursor: pointer;">
+      ♡
+      <span style="margin-left: 10px;">View</span>
+    </div>
+  </div>
+  <div style="position: relative; height: 280px; overflow: hidden; border-radius: 10px;">
+    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw4fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; display: flex; justify-content: center; align-items: center; font-size: 24px; color: #fff; transition: opacity 0.3s ease-in-out; cursor: pointer;">
+      ♡
+      <span style="margin-left: 10px;">View</span>
+    </div>
+  </div>
+  <div style="position: relative; height: 280px; overflow: hidden; border-radius: 10px;">
+    <img src="https://images.unsplash.com/photo-1605296867724-fa87a8ef53fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw5fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; display: flex; justify-content: center; align-items: center; font-size: 24px; color: #fff; transition: opacity 0.3s ease-in-out; cursor: pointer;">
+      ♡
+      <span style="margin-left: 10px;">View</span>
+    </div>
+  </div>
+  <div style="position: relative; height: 280px; overflow: hidden; border-radius: 10px;">
+    <img src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw3fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; display: flex; justify-content: center; align-items: center; font-size: 24px; color: #fff; transition: opacity 0.3s ease-in-out; cursor: pointer;">
+      ♡
+      <span style="margin-left: 10px;">View</span>
+    </div>
+  </div>
+  <div style="position: relative; height: 280px; overflow: hidden; border-radius: 10px;">
+    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw4fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; display: flex; justify-content: center; align-items: center; font-size: 24px; color: #fff; transition: opacity 0.3s ease-in-out; cursor: pointer;">
+      ♡
+      <span style="margin-left: 10px;">View</span>
+    </div>
+  </div>
+  <div style="position: relative; height: 280px; overflow: hidden; border-radius: 10px;">
+    <img src="https://images.unsplash.com/photo-1605296867724-fa87a8ef53fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc4NDh8MHwxfHNlYXJjaHw5fHxneW18ZW58MXwwfHx8MTc3NDI1ODg2OHww&ixlib=rb-4.1.0&q=80&w=1080" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; display: flex; justify-content: center; align-items: center; font-size: 24px; color: #fff; transition: opacity 0.3s ease-in-out; cursor: pointer;">
+      ♡
+      <span style="margin-left: 10px;">View</span>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" style="background-color: #080c14; padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+  <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+    <h3 style="font-family: 'Playfair Display'; font-size: 24px; color: #fff; margin-bottom: 10px;">Emily Chen, Personal Trainer</h3>
+    <span style="font-size: 18px; color: #fff; margin-bottom: 10px;">★★★★★</span>
+    <p style="font-family: 'Inter'; font-size: 16px; color: #fff;">"I've been using Build Me A Gym for months now, and I've seen a significant improvement in my clients' progress. The website is easy to use, and the community is very supportive."</p>
+  </div>
+  <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+    <h3 style="font-family: 'Playfair Display'; font-size: 24px; color: #fff; margin-bottom: 10px;">David Lee, Gym Owner</h3>
+    <span style="font-size: 18px; color: #fff; margin-bottom: 10px;">★★★★★</span>
+    <p style="font-family: 'Inter'; font-size: 16px; color: #fff;">"Build Me A Gym has been a game-changer for my business. The website is well-designed, and the features are very useful for managing my gym's operations."</p>
+  </div>
+  <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+    <h3 style="font-family: 'Playfair Display'; font-size: 24px; color: #fff; margin-bottom: 10px;">Sophia Patel, Fitness Enthusiast</h3>
+    <span style="font-size: 18px; color: #fff; margin-bottom: 10px;">★★★★★</span>
+    <p style="font-family: 'Inter'; font-size: 16px; color: #fff;">"I love using Build Me A Gym to track my workouts and connect with other fitness enthusiasts. The community is very supportive, and the website is easy to use."</p>
+  </div>
+</section>
+
+<section class="reveal" style="background: linear-gradient(90deg, #ff69b4, #ffe000); padding: 40px; text-align: center;">
+  <h2 style="font-family: 'Playfair Display'; font-size: 36px; color: #fff; margin-bottom: 20px;">Get 15% Off Your First Membership</h2>
+  <input type="email" style="padding: 10px; border: none; border-radius: 5px; width: 50%; font-family: 'Inter'; font-size: 16px;" placeholder="Enter your email address">
+  <button style="padding: 10px; border: none; border-radius: 5px; background-color: #fff; color: #000; font-family: 'Inter'; font-size: 16px; cursor: pointer;">Sign Up</button>
+  <p style="font-size: 14px; color: #fff; margin-top: 10px;">By signing up, you agree to our terms and conditions. We respect your privacy and will not share your email address with anyone.</p>
+</section>
+
+<section class="reveal" style="background-color: #080c14; padding: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img src="logo.png" style="width: 50px; height: 50px; margin-bottom: 10px;">
+    <p style="font-family: 'Inter'; font-size: 14px; color: #fff; margin-bottom: 10px;">Build Me A Gym</p>
+    <p style="font-size: 14px; color: #fff; margin-bottom: 10px;">Transform Your Body</p>
+    <div style="display: flex; justify-content: space-between; width: 100px; margin-top: 10px;">
+      <img src="facebook.png" style="width: 20px; height: 20px;">
+      <img src="instagram.png" style="width: 20px; height: 20px;">
+      <img src="twitter.png" style="width: 20px; height: 20px;">
+      <img src="pinterest.png" style="width: 20px; height: 20px;">
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <h3 style="font-family: 'Playfair Display'; font-size: 18px; color: #fff; margin-bottom: 10px;">Shop/Service</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">Personal Training</a></li>
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">Group Classes</a></li>
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">Gym Membership</a></li>
+    </ul>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <h3 style="font-family: 'Playfair Display'; font-size: 18px; color: #fff; margin-bottom: 10px;">Help</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">Shipping</a></li>
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">Returns</a></li>
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">FAQ</a></li>
+      <li style="font-size: 14px; color: #fff; margin-bottom: 10px;"><a href="#" style="text-decoration: none; color: #fff;">Contact</a></li>
+    </ul>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <h3 style="font-family: 'Playfair Display'; font-size: 18px; color: #fff; margin-bottom: 10px;">Newsletter</h3>
+    <input type="email" style="padding: 10px; border: none; border-radius: 5px; width: 100%; font-family: 'Inter'; font-size: 14px;" placeholder="Enter your email address">
+    <button style="padding: 10px; border: none; border-radius: 5px; background-color: #fff; color: #000; font-family: 'Inter'; font-size: 14px; cursor: pointer; width: 100%;">Sign Up</button>
+  </div>
+</section>
+
+<section class="reveal" style="background-color: #080c14; padding: 10px; text-align: center; border-top: 1px solid #333;">
+  <p style="font-size: 12px; color: #fff;">&copy; 2023 Build Me A Gym. All rights reserved.</p>
+  <p style="font-size: 12px; color: #fff; margin-top: 5px;"><a href="#" style="text-decoration: none; color: #fff;">Privacy Policy</a> | <a href="#" style="text-decoration: none; color: #fff;">Terms of Service</a></p>
+</section>
+<div id="cart-sidebar" style="position:fixed;top:0;right:-420px;width:420px;height:100vh;background:#0d1220;border-left:1px solid rgba(255,255,255,0.08);z-index:99999;transition:right 0.4s cubic-bezier(0.4,0,0.2,1);padding:32px;overflow-y:auto;">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <h3 style="font-family:Inter;font-size:18px;color:#fff;margin:0;">Cart</h3>
+    <button id="cart-close" style="background:transparent;border:none;padding:0;cursor:pointer;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <ul id="cart-items" style="list-style:none;padding:0;margin:0;">
+    <li style="padding:16px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;align-items:center;">
+        <img src="product1.jpg" alt="Product 1" style="width:40px;height:40px;margin-right:16px;">
+        <div>
+          <h4 style="font-family:Inter;font-size:14px;color:#fff;margin:0;">Product 1</h4>
+          <p style="font-family:Inter;font-size:12px;color:rgba(255,255,255,0.5);margin:0;">$19.99</p>
+        </div>
+      </div>
+      <div>
+        <button style="background:transparent;border:none;padding:0;cursor:pointer;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+        <span style="font-family:Inter;font-size:14px;color:#fff;margin:0 8px;">1</span>
+        <button style="background:transparent;border:none;padding:0;cursor:pointer;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </li>
+  </ul>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;">
+    <h4 style="font-family:Inter;font-size:14px;color:#fff;margin:0;">Subtotal:</h4>
+    <p style="font-family:Inter;font-size:14px;color:#fff;margin:0;">$19.99</p>
+  </div>
+  <button id="checkout" style="background:#3498db;border:none;padding:16px 24px;cursor:pointer;width:100%;font-family:Inter;font-size:14px;color:#fff;margin-top:24px;">Checkout</button>
+</div>
+
+<div id="cookie-consent" style="position:fixed;bottom:0;left:0;width:100%;background:rgba(0,0,0,0.8);padding:16px;text-align:center;z-index:9999;">
+  <p style="font-family:Inter;font-size:12px;color:#fff;margin:0;">We use cookies to improve your experience. By continuing to use our site, you accept our <a href="#" style="color:#3498db;text-decoration:none;">cookie policy</a>.</p>
+  <button id="accept-cookies" style="background:transparent;border:none;padding:8px 16px;cursor:pointer;font-family:Inter;font-size:12px;color:#fff;">Accept</button>
+</div>
+
+<div id="live-chat" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#3498db;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;z-index:9999;">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path>
+    <path d="M8 12h3v3h2v-3h3v-2H8v2zm7-7v2h3v3h2v-3h3V5h-6z"></path>
+  </svg>
+</div>
+
+<button id="back-to-top" style="position:fixed;bottom:80px;right:24px;width:40px;height:40px;background:transparent;border:none;padding:0;cursor:pointer;z-index:9999;">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="2" x2="12" y2="22"></line>
+    <polyline points="10 10 12 12 14 10"></polyline>
+  </svg>
+</button>
+
+<div id="size-guide-modal" style="position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;z-index:9999;">
+  <div style="background:#0d1220;padding:32px;width:80%;max-width:800px;border-radius:16px;">
+    <h2 style="font-family:Inter;font-size:18px;color:#fff;margin:0;">Size Guide</h2>
+    <table style="width:100%;border-collapse:collapse;margin-top:24px;">
+      <thead>
+        <tr>
+          <th style="font-family:Inter;font-size:14px;color:#fff;padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">Size</th>
+          <th style="font-family:Inter;font-size:14px;color:#fff;padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">Chest</th>
+          <th style="font-family:Inter;font-size:14px;color:#fff;padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">Waist</th>
+          <th style="font-family:Inter;font-size:14px;color:#fff;padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">Length</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">S</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">34-36</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">28-30</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">24-26</td>
+        </tr>
+        <tr>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">M</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">38-40</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">32-34</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">26-28</td>
+        </tr>
+        <tr>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">L</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">42-44</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">36-38</td>
+          <td style="font-family:Inter;font-size:14px;color:rgba(255,255,255,0.5);padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);">28-30</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.from(el, {
+        scrollTrigger:{trigger:el, start:'top 85%', toggleActions:'play none none none'},
+        y:50, opacity:0, duration:0.8, ease:'power2.out'
+      });
+    });
+
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartClose = document.getElementById('cart-close');
+    const checkout = document.getElementById('checkout');
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptCookies = document.getElementById('accept-cookies');
+    const liveChat = document.getElementById('live-chat');
+    const backToTop = document.getElementById('back-to-top');
+    const sizeGuideModal = document.getElementById('size-guide-modal');
+
+    cartClose.addEventListener('click', function() {
+      cartSidebar.style.right = '-420px';
+    });
+
+    checkout.addEventListener('click', function() {
+      alert('Checkout clicked');
+    });
+
+    acceptCookies.addEventListener('click', function() {
+      cookieConsent.style.display = 'none';
+    });
+
+    liveChat.addEventListener('click', function() {
+      alert('Live chat clicked');
+    });
+
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    const statsCounter = document.querySelectorAll('.stats-counter');
+    statsCounter.forEach(counter => {
+      gsap.to(counter, {
+        scrollTrigger:{trigger:counter, start:'top 85%', toggleActions:'play none none none'},
+        duration:1, ease:'power2.out', textContent:100
+      });
+    });
+
+    const addToCart = document.querySelectorAll('.add-to-cart');
+    addToCart.forEach(button => {
+      button.addEventListener('click', function() {
+        const cartCounter = document.getElementById('cart-counter');
+        const currentCount = parseInt(cartCounter.textContent);
+        cartCounter.textContent = currentCount + 1;
+      });
+    });
+
+    const wishlistHeart = document.querySelectorAll('.wishlist-heart');
+    wishlistHeart.forEach(heart => {
+      heart.addEventListener('click', function() {
+        heart.classList.toggle('active');
+      });
+    });
+
+    const countdownTimer = document.getElementById('countdown-timer');
+    const deadline = new Date('2024-03-16T00:00:00');
+    const timer = setInterval(function() {
+      const now = new Date();
+      const timeLeft = deadline - now;
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      countdownTimer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        countdownTimer.textContent = '00d 00h 00m 00s';
+      }
+    }, 1000);
+
+    const mobileHamburgerMenu = document.getElementById('mobile-hamburger-menu');
+    const navMenu = document.getElementById('nav-menu');
+    mobileHamburgerMenu.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+    });
+
+    const smoothScrollAnchorLinks = document.querySelectorAll('a.smooth-scroll');
+    smoothScrollAnchorLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.getElementById(targetId.replace('#', ''));
+        gsap.to(window, {
+          duration:1, ease:'power2.out', scrollTo:{y:targetElement.offsetTop, autoKill:false}
+        });
+      });
+    });
+
+    const glassmorphismCards = document.querySelectorAll('.glassmorphism-card');
+    glassmorphismCards.forEach(card => {
+      card.addEventListener('mouseover', function() {
+        gsap.to(card, {
+          duration:0.5, ease:'power2.out', boxShadow:'0 0 20px rgba(0,0,0,0.2)'
+        });
+      });
+      card.addEventListener('mouseout', function() {
+        gsap.to(card, {
+          duration:0.5, ease:'power2.out', boxShadow:'0 0 10px rgba(0,0,0,0.1)'
+        });
+      });
+    });
+  });
+</script>
